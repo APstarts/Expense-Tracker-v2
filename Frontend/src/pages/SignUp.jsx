@@ -7,13 +7,17 @@ const SignUp = () => {
 
     function handleSubmit(e){
         e.preventDefault();
-        axios.post("http://localhost:3000/register", {username, password })
+        axios.post("http://localhost:3000/api/register", {username, password })
         .then(response => {
-            console.log(response);
+            console.log(response.data.message)
         }).catch((err) => {
-            console.log(err);
+            if(err.response){
+                console.log(err.response.data.message);
+            } else {
+                console.log("Error: ", err.message);
+            }
         })
-    }
+    };
   return (
     <div className='h-screen flex flex-col gap-5 justify-center items-center'>
         <h1 className='text-2xl'>Please register to peform your expense analysis!</h1>

@@ -1,16 +1,22 @@
 import {useState} from 'react';
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
     function handleSubmit(e){
         e.preventDefault();
-        axios.post("http://localhost:3000/login", {username, password})
+        axios.post("http://localhost:3000/api/login", {username, password})
         .then(response => {
-            console.log(response); //need to save the token into local storage here which can be further used to access the protected routes.
+            console.log(response.data.message);
+            console.log("token: ", response.data.token);
+            localStorage.setItem("token", response.data.token);//need to save the token into local storage here which can be further used to access the protected routes.
+            navigate("/dashboard");
         }).catch((err) => {
-            console.log(err);
+            console.log(err.response);
         })
     }
     
