@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Chart from "../components/Chart";
+import ExpChart from "../components/totalExpChart";
 
 const Dashboard = () => {
   const [id, setId] = useState(null);
@@ -55,7 +56,7 @@ const Dashboard = () => {
 
           // Sort by amount in descending order
           const sorted = [...data].sort((a, b) => Number(b.amount) - Number(a.amount));
-          setNewArray(sorted);
+          setNewArray(sorted.slice(0,5));
         })
         .catch((err) => console.log("Chart data fetch error:", err));
     } catch (err) {
@@ -123,7 +124,7 @@ const Dashboard = () => {
 
           <button
             onClick={() => setShowPopup(true)}
-            className="fixed bottom-2 right-2 bg-black text-white text-3xl rounded-full h-20 w-20 flex justify-center items-center hover:bg-orange-600"
+            className="fixed bottom-10 md:bottom-2 right-2 bg-black text-white text-3xl rounded-full h-20 w-20 flex justify-center items-center hover:bg-orange-600"
           >
             +
           </button>
@@ -195,7 +196,7 @@ const Dashboard = () => {
             </div>
           )}
 
-          <div className="grid grid-cols-2 gap-4 ml-4 mr-4 mt-10">
+          <div className="grid md:grid-cols-2 gap-4 ml-4 mr-4 mt-10">
             <div className="w-full p-4 bg-white rounded-xl shadow-md">
               <Chart />
             </div>
@@ -214,6 +215,9 @@ const Dashboard = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+            <div className="w-full p-4 bg-white rounded-xl shadow-md">
+              <ExpChart />
             </div>
           </div>
         </div>
