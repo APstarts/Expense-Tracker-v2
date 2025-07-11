@@ -22,9 +22,9 @@ const Login = () => {
     
 return (
     <div className="w-screen h-screen flex flex-col gap-2 justify-center items-center">
-        <h1 className='text-2xl block p-1'>Welcome! Please login to access your dashboard!</h1>
+        <h1 className='text-2xl block p-1 text-center'>Welcome! Please login to access your dashboard!</h1>
         
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full max-w-xs p-5 rounded-lg shadow-2xl">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2 w-full max-w-xs p-5 rounded-lg shadow-2xl dark:bg-gray-900">
             <label>Username</label>
             <input className="border border-gray-400 p-1 rounded-md" type="email" name="username" value={username} onChange={(e) => setUsername(e.target.value)} />
             <label>Password</label>

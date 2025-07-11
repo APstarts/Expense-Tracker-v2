@@ -110,21 +110,21 @@ const Dashboard = () => {
   return (
     <>
       {id ? (
-        <div>
+        <div className="px-4">
           <h1 className="text-2xl ml-3 mt-5">
             Welcome to your dashboard, {username}
           </h1>
 
           <button
             onClick={handleLogout}
-            className="fixed top-5 right-2 bg-black text-white p-2 rounded-md hover:bg-orange-600"
+            className="dark:bg-gray-800 fixed top-5 right-2 bg-black text-white p-2 rounded-md hover:bg-orange-600"
           >
             Logout
           </button>
 
           <button
             onClick={() => setShowPopup(true)}
-            className="fixed bottom-10 md:bottom-2 right-2 bg-black text-white text-3xl rounded-full h-20 w-20 flex justify-center items-center hover:bg-orange-600"
+            className="dark:bg-gray-800 fixed bottom-10 md:bottom-2 right-2 bg-black text-white text-3xl rounded-full h-21 w-21 flex justify-center items-center hover:bg-orange-600"
           >
             +
           </button>
@@ -196,12 +196,12 @@ const Dashboard = () => {
             </div>
           )}
 
-          <div className="grid md:grid-cols-2 gap-4 ml-4 mr-4 mt-10">
-            <div className="w-full p-4 bg-white rounded-xl shadow-md">
+          <div className="grid md:grid-cols-2 gap-4 mt-10">
+            <div className="w-full p-4 bg-white rounded-xl shadow-md dark:bg-gray-950 dark:text-white dark:border dark:border-gray-800 border border-gray-300">
               <Chart />
             </div>
-            <div className="w-full p-4 bg-white rounded-xl shadow-md">
-              <h2 className="text-lg font-semibold mb-2">Top Expenses</h2>
+            <div className="w-full p-4 bg-white rounded-xl shadow-md dark:bg-gray-950 dark:text-white dark:border dark:border-gray-800 border border-gray-300">
+              <h2 className="text-lg font-semibold mb-2">Top 5 expenses for the period</h2>
               <ul className="space-y-2 max-h-[400px] overflow-auto">
                 {newArray.map((expense) => (
                   <li
@@ -216,7 +216,7 @@ const Dashboard = () => {
                 ))}
               </ul>
             </div>
-            <div className="w-full p-4 bg-white rounded-xl shadow-md">
+            <div className="w-full p-4 bg-white rounded-xl shadow-md dark:bg-gray-950 dark:text-white dark:border dark:border-gray-800 border border-gray-300">
               <ExpChart />
             </div>
           </div>

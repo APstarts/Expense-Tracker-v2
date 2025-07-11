@@ -40,18 +40,15 @@ function ExpChart() {
         amount: item.amount
     }));
 
-    const arrayOfDate = sortedDataForChart.map((item) => item.date);
-    const arrayOfAmount = sortedDataForChart.map((item) => item.amount);
+    let togData = sortedDataForChart.reduce((acc, curr) => {
+        if(!acc[curr.date]){
+            acc[curr.date] = curr.amount;
+        } else {
+            acc[curr.date] += curr.amount;
+        }
+        return acc;
+    },{});
 
-    console.log(arrayOfDate);
-    console.log(arrayOfAmount);
-
-    // console.log(sortedDataForChart);
-    
-    // const arrayOfDate = Object.keys(sortedDataForChart);
-    // const arrayOfAmount = Object.values(sortedDataForChart);
-    // console.log("Date:", arrayOfDate);
-    // console.log("Amount: ", arrayOfAmount);
 
 const options = {
   responsive: true,
@@ -66,20 +63,23 @@ const options = {
   },
 };
 
-const labels = expData.map((item) => {
-    const [year, month, day] = item.expense_date.split("-");
-    return `${day}-${month}`; 
+
+const labels = Object.keys(togData).map((item) => {
+    const [year, month, day] = item.split("-");
+    return `${day}-${month}`;
 });
-const values = expData.map((item) => item.amount);
+const values = Object.values(togData);
+
+
 
 const data = {
   labels,
   datasets: [
     {
-      label: 'Dataset 1',
+      label: 'Expenses per day',
       data: values,
       borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      backgroundColor: 'rgba(255,69,0, 0.5)',
     },
   ],
 };
